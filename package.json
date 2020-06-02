@@ -4,7 +4,8 @@
   "main": "src/app.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon"
+    "server": "node src/server.js",
+    "client": "nodemon src/client.js"
   },
   "dependencies": {
     "cors": "^2.8.5",

@@ -9,6 +9,7 @@ const io = require("socket.io-client")(`${URLPATH}:${SOKET_PORT}`);
 const ps4 = new Device({ adress: DEVICE_PS4_ADRESS, passCode: DEVICE_PS4_PASSCODE });
 
 ps4.getDeviceStatus().then(res=>console.log(res)).catch(err=>console.error(err))
+console.log({env:{URLPATH,SOKET_PORT,DEVICE_PS4_ADRESS,DEVICE_PS4_PASSCODE}})
 
 const handleRecivePs4Action = (data) => {
   switch (data.action) {

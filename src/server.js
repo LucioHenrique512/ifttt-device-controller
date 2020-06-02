@@ -1,10 +1,12 @@
+require('dotenv/config')
 const io = require("socket.io").listen(8081);
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const cors = require("cors");
-
+const HTTP_PORT = process.env.HTTP_PORT;
 var socketio = null;
+console.log(HTTP_PORT)
 
 app.use(cors());
 app.use(morgan("tiny"));
