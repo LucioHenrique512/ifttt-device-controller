@@ -1,21 +1,21 @@
 require('dotenv/config')
-const io = require("socket.io").listen(8081);
-const express = require("express");
-const app = express();
-const morgan = require("morgan");
+const express= require("express");
+const app = express()
+const server = require('http').Server(app)
+const io = require("socket.io")(server);
 const cors = require("cors");
-const HTTP_PORT = process.env.HTTP_PORT;
+const PORT = process.env.PORT;
 var socketio = null;
-console.log(HTTP_PORT)
 
-app.use(cors());
-app.use(morgan("tiny"));
-app.use(express.json());
+console.log(PORT)
+
+app.use(cors())
+app.use(express.json())
 
 io.on("connection", (socket) => {
   socketio = socket;
   console.log(socket.id);
-  socket.emit();
+  
 });
 
 const handleReciveComand = (payload) => {
@@ -28,7 +28,7 @@ const handleReciveComand = (payload) => {
 };
 
 app.get("/", (req, res) => {
-  return res.send(socketio.id);
+  return res.send({hello:"server"});
 });
 
 app.post("/", (req, res) => {
@@ -37,4 +37,7 @@ app.post("/", (req, res) => {
   return res.send({ ok: true });
 });
 
-app.listen(8080);
+
+
+
+server.listen(PORT);

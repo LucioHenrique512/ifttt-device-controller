@@ -1,15 +1,15 @@
 require('dotenv/config')
-const SOKET_PORT = process.env.SOKET_PORT;
+const PORT = process.env.PORT;
 const URLPATH = process.env.URLPATH;
 const DEVICE_PS4_ADRESS = process.env.DEVICE_PS4_ADRESS;
 const DEVICE_PS4_PASSCODE = process.env.DEVICE_PS4_PASSCODE;
 const { Device } = require("ps4-waker");
-const io = require("socket.io-client")(`${URLPATH}:${SOKET_PORT}`);
+const io = require("socket.io-client")(`${URLPATH}:${PORT}`);
 
 const ps4 = new Device({ adress: DEVICE_PS4_ADRESS, passCode: DEVICE_PS4_PASSCODE });
 
 ps4.getDeviceStatus().then(res=>console.log(res)).catch(err=>console.error(err))
-console.log({env:{URLPATH,SOKET_PORT,DEVICE_PS4_ADRESS,DEVICE_PS4_PASSCODE}})
+console.log({env:{URLPATH,PORT,DEVICE_PS4_ADRESS,DEVICE_PS4_PASSCODE}})
 
 const handleRecivePs4Action = (data) => {
   switch (data.action) {
