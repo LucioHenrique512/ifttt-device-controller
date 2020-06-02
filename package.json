@@ -4,10 +4,8 @@
   "main": "src/server.js",
   "license": "MIT",
   "scripts": {
-    "server": "node src/server.js",
-    "client": "nodemon src/client.js",
-    "start": "./node_modules/.bin/netlify-lambda serve src",
-    "build": "./node_modules/.bin/netlify-lambda build src"
+    "server": "nodemon src/server.js",
+    "client": "nodemon src/client.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -15,6 +13,7 @@
     "express": "^4.17.1",
     "morgan": "^1.10.0",
     "netlify-lambda": "^1.6.3",
+    "nodemon": "^2.0.4",
     "ps4-waker": "^1.9.0",
     "serverless-http": "^2.5.0",
     "socket.io": "^2.3.0",
