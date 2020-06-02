@@ -28,7 +28,7 @@ const handleReciveComand = (payload) => {
 };
 
 app.get("/", (req, res) => {
-  return res.send({hello:"server"});
+  return res.send({PORT});
 });
 
 app.post("/", (req, res) => {
