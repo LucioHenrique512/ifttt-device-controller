@@ -1,7 +1,14 @@
+require('dotenv/config')
+const SOKET_PORT = process.env.SOKET_PORT;
+const URLPATH = process.env.URLPATH;
+const DEVICE_PS4_ADRESS = process.env.DEVICE_PS4_ADRESS;
+const DEVICE_PS4_PASSCODE = process.env.DEVICE_PS4_PASSCODE;
 const { Device } = require("ps4-waker");
-const io = require("socket.io-client")("http://localhost:8081/");
+const io = require("socket.io-client")(`${URLPATH}:${SOKET_PORT}`);
 
-const ps4 = new Device({ adress: "192.168.0.112", passCode: "9605" });
+const ps4 = new Device({ adress: DEVICE_PS4_ADRESS, passCode: DEVICE_PS4_PASSCODE });
+
+ps4.getDeviceStatus().then(res=>console.log(res)).catch(err=>console.error(err))
 
 const handleRecivePs4Action = (data) => {
   switch (data.action) {
@@ -20,7 +27,7 @@ const handleRecivePs4Action = (data) => {
       return ps4
         .turnOff()
         .then((res) => ({ action: data.action, exec: true }))
-        .catch((err) => ({ action: data.action, exec: false }));
+        .catch((err) => console.log(err));
     case "OPEN_NETFLIX_PS4":
       ps4.startTitle("NPUA80960");
       return { action: data.action, exec: true };
