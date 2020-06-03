@@ -5,11 +5,14 @@ const DEVICE_PS4_ADRESS = process.env.DEVICE_PS4_ADRESS;
 const DEVICE_PS4_PASSCODE = process.env.DEVICE_PS4_PASSCODE;
 const { Device } = require("ps4-waker");
 const io = require("socket.io-client")(`${URLPATH}:${PORT}`);
+const fetch = require('node-fetch')
 
 const ps4 = new Device({ adress: DEVICE_PS4_ADRESS, passCode: DEVICE_PS4_PASSCODE });
 
 ps4.getDeviceStatus().then(res=>console.log(res)).catch(err=>console.error(err))
 console.log({env:{URLPATH,PORT,DEVICE_PS4_ADRESS,DEVICE_PS4_PASSCODE}})
+
+
 
 const handleRecivePs4Action = (data) => {
   switch (data.action) {
@@ -46,11 +49,12 @@ io.on("PS4_ACTION", async (data) => {
   io.emit("ACTION_RESPONSE", response);
 });
 
-//const ps4 = new Device({adress: "192.168.0.112"})
 
-//ps4.turnOff().then(res=>console.log(res)).catch(err=>console.log(err))
-//ps4.turnOn().then(res=>console.log(res)).catch(err=>console.log(err))
+const stayAlive = () => {
+  fetch("https://ifttt-device-controller.herokuapp.com/",{method:'GET'}).then(res=>res.json()).then(res=>console.log(res))
+}
 
-//ps4.getDeviceStatus().then(res=>console.log(res)).catch(err=>console.log(err))
+setInterval(function() {
+  stayAlive()
+ }, 5 * 60 * 1000);
 
-//ps4.startTitle('NPUA80960')
