@@ -51,6 +51,7 @@ io.on("PS4_ACTION", async (data) => {
 
 
 const stayAlive = () => {
+  console.log('You need stay alive')
   fetch("https://ifttt-device-controller.herokuapp.com/",{method:'GET'}).then(res=>res.json()).then(res=>console.log(res))
 }
 
