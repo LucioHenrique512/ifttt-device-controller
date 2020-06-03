@@ -30,7 +30,7 @@ const handleRecivePs4Action = (data) => {
         .then((res) => ({ action: data.action, exec: true }))
         .catch((err) => console.log(err));
     case "OPEN_NETFLIX_PS4":
-      ps4.startTitle("NPUA80960");
+      ps4.startTitle("CUSA00129");
       return { action: data.action, exec: true };
     case "OPEN_YOUTUBE_PS4":
       ps4.startTitle("CUSA01015");
