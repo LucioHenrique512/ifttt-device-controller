@@ -13,7 +13,7 @@
     "express": "^4.17.1",
     "morgan": "^1.10.0",
     "netlify-lambda": "^1.6.3",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "nodemon": "^2.0.4",
     "ps4-waker": "^1.9.0",
     "serverless-http": "^2.5.0",
